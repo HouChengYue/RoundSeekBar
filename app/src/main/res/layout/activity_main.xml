@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.bw.views.demo.MainActivity">
+
+    <TextView
+        android:id="@+id/tvMain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello World!"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.bw.views.roundseekbar.RoundSeekBar
+        android:id="@+id/rsbMain"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        app:bgColor="#364F63"
+        app:bgWidth="20dp"
+        app:countWidth="30dp"
+        app:dividerColor="#676767"
+        app:endAngle="315"
+        app:endColor="#F45A5A"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tvMain"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:progress="16"
+        app:Max="16"
+        app:showDivider="true"
+        app:startAngle="45"
+        app:startColor="#FF11B0F8" />
+</androidx.constraintlayout.widget.ConstraintLayout>

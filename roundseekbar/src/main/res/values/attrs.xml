@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="RoundSeekBar">
+        <attr name="bgColor" format="color" />
+        <attr name="bgWidth" format="dimension" />
+        <attr name="countWidth" format="dimension" />
+        <attr name="dividerColor" format="color" />
+        <attr name="endAngle" format="integer" />
+        <attr name="endColor" format="color" />
+        <attr name="Max" format="integer" />
+        <attr name="progress" format="integer" />
+        <attr name="showDivider" format="boolean" />
+        <attr name="startAngle" format="integer" />
+        <attr name="startColor" format="color" />
+        <attr name="canTouch" format="boolean" />
+    </declare-styleable>
+</resources>
