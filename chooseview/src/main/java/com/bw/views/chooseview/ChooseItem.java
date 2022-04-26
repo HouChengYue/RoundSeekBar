@@ -1,5 +1,7 @@
 package com.bw.views.chooseview;
 
+import androidx.annotation.AnyRes;
+import androidx.annotation.DrawableRes;
 import androidx.annotation.IdRes;
 
 import java.util.Objects;
@@ -15,7 +17,7 @@ public class ChooseItem {
     private int res;
 
 
-    public ChooseItem(int id, @IdRes int res) {
+    public ChooseItem(int id, @DrawableRes int res) {
         this.id = id;
         this.res = res;
     }

@@ -2,6 +2,7 @@ package com.bw.views.demo;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,15 +32,13 @@ public class MainActivity extends AppCompatActivity {
         chooseItems.add(new ChooseItem(2,R.mipmap.icon_80_seat_heating_left_s2));
         chooseItems.add(new ChooseItem(3,R.mipmap.icon_80_seat_heating_left_s3));
         chooseView.setChooseItems(chooseItems);
-        chooseView.setOnItemChooseListener(new ChooseView.onItemChooseListener() {
-            @Override
-            public void onItemChoose(ChooseItem chooseItem) {
-                Toast.makeText(MainActivity.this, "选择了"+chooseItem.getId(), Toast.LENGTH_SHORT).show();
-            }
-        });
+        chooseView.setOnItemChooseListener(chooseItem ->
+                Toast.makeText(MainActivity.this, "选择了"+chooseItem.getId(), Toast.LENGTH_SHORT).show());
 
 
-        findViewById(R.id.ivMain).setOnClickListener(view -> {
+        ImageView ivMain = findViewById(R.id.ivMain);
+        ivMain
+                .setOnClickListener(view -> {
             Toast.makeText(this, "Hello World!", Toast.LENGTH_SHORT).show();
         });
 
