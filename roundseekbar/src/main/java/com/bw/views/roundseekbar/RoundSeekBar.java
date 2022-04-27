@@ -6,11 +6,14 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.LinearGradient;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.graphics.Shader;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
+import android.view.TouchDelegate;
 import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
 
@@ -52,7 +55,7 @@ public class RoundSeekBar extends View {
     private ThreadPoolExecutor mPoolExecutor;
     private int mMinSide;
     private int mMaxWidth;
-    private int offset = 50;
+    private int offset = 10;
     private OnSeekBarChangeListener mOnSeekBarChangeListener;
     private final float half = 0.5f;
     private LinearGradient mLinearGradient;
@@ -191,7 +194,17 @@ public class RoundSeekBar extends View {
         canvas.rotate(
                 (progress * 1f / mMax) * (endAngle - startAngle), mMinSide * half, mMinSide * half);
         canvas.drawCircle(mMaxWidth * half, mMinSide * half, mMaxWidth * half - 6, mHandlePaint);
-
+        post(() -> {
+            Rect rect = new Rect();
+            getHitRect(rect);
+            rect.left += offset;
+            rect.top += offset;
+            rect.right += offset;
+            rect.bottom += offset;
+            TouchDelegate touchDelegate = new TouchDelegate(rect, this);
+            ViewGroup parent = (ViewGroup) getParent();
+            parent.setTouchDelegate(touchDelegate);
+        });
     }
 
 
@@ -213,7 +226,7 @@ public class RoundSeekBar extends View {
                 Log.i(TAG, "mX1:" + mX1 + " mY1:" + mY1 + " mX2:" + mX2 + " mY2:" + mY2);
                 mPoolExecutor.submit(() -> {
                     float distance = (float) Math.sqrt(Math.pow(mX2 - mMinSide * half, 2) + Math.pow(mY2 - mMinSide * half, 2));
-                    if (distance > (mMinSide * half - mMaxWidth - offset) && distance < mMinSide * half) {
+                    if (distance > (mMinSide * half - mMaxWidth - offset) && distance < mMinSide * half+offset) {
                         int angle = fitAngle(mMinSide * half, mMinSide * half, mX2, mY2);
                         int progress = (angle - startAngle) * mMax / (endAngle - startAngle);
                         if (progress < 0) {
